@@ -1,7 +1,7 @@
 """Load anime-titles.xml into database and search for id by title"""
 
 import xml.etree.ElementTree as ET
-from ..utils.config import Config
+from ..py3utils.config import Config
 import os.path
 import zlib
 from . import AnidbModel, AnimeTitle
