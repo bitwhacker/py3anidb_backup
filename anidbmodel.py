@@ -2,10 +2,8 @@ from sqlalchemy import Column, ForeignKey, Integer, String, create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import relationship, sessionmaker
-from ..utils import ModelHelper
+from ..py3utils import ModelHelper
 import sys
-
-__modelversion__ = "0.1.0"   #Update when database structure changes for Alembic
 
 Base = declarative_base()
 class AnimeTitle(Base):
@@ -27,11 +25,15 @@ class Settings(Base):
 
 class AnidbModel():
     def __init__(self):
-        engine = create_engine(ModelHelper().getenginestring('anidb'))
+        configfile = os.path.dirname(os.path.realpath(__file__)) + "/py3anidb.cfg"
+        enginestring = ModelHelper().getenginestring('anidb', Config(configfile))
+        print (enginestring)
+        return
+        engine = create_engine(ModelHelper().getenginestring('anidb', Config(configfile)))
         self.DBSession = sessionmaker(bind = engine)
         self.db = self.DBSession()
-        if self.get_version() != __modelversion__:
-            self.update_database()
+#        if self.get_version() != __modelversion__:
+#            self.update_database()
 
     def update_database(self):
         print("Updating Database")
