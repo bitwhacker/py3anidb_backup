@@ -1,7 +1,8 @@
-from .anidbmodel import AnidbModel, Anime, AnimeTitle, Settings
-from .titlesearch import TitleSearch
+from .anidbmodel import AnidbModel, Anime, AnimeTitle, Setting
+from .anidbidsearch import AnidbIDSearch
+from .anidb import Anidb
+from .anidbcomm import AnidbComm
 
-__all__ = ['AnidbModel', 'AnimeTitle', 'Anime', 'Settings', 'TitleSearch']
+#__all__ = ['Anidb', 'AnidbModel', 'AnidbIDSearch', 'AnidbComm', 'AnimeTitle', 'Anime', 'Settings']
+__all__ = ['Anidb', 'AnimeTitle', 'Anime', 'Settings']
 __version__ = "0.1.0"
-
-configfile = os.path.dirname(os.path.realpath(__file__)) + "/py3anidb.cfg"
